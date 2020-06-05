@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Jeopardy!</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div>
+            <img id="logo" src="logo.png">
+        </div>
+        <div id="title">Jeopardy!</div>
+        <div class='player-board' id="player-1">
+            <p>PLAYER 1</p>
+            <p class='score-board'>
+                Score: $<span id="player1-score" class="score">0</span>
+            </p>
+        </div>
+        <div class='player-board' id='player-2'>
+            <p>PLAYER 2</p>
+            <p class='score-board'>
+                Score: $<span id="player2-score" class="score">0</span>
+            </p>
+        </div>
+        <br>
+        <br>
+    </header>
+    <main>
+        <div id="container">
+            <div id="title-container">
+                <button class="title-button" id="cat-one-title"></button>
+                <button class="title-button" id="cat-two-title"></button>
+                <button class="title-button" id="cat-three-title"></button>
+                <button class="title-button" id="cat-four-title"></button>
+                <button class="title-button" id="cat-five-title"></button>
+                <button class="title-button" id="cat-six-title"></button>
+            </div>
+            <div id="$100-clues-container" class="clues-container">
+                <button class="clue-button" id="cat-one-one">$100</button>
+                <button class="clue-button" id="cat-two-one">$100</button>
+                <button class="clue-button" id="cat-three-one">$100</button>
+                <button class="clue-button" id="cat-four-one">$100</button>
+                <button class="clue-button" id="cat-five-one">$100</button>
+                <button class="clue-button" id="cat-six-one">$100</button>
+            </div>
+            <div id="$200-clues-container" class="clues-container">
+                <button class="clue-button" id="cat-one-two">$200</button>
+                <button class="clue-button" id="cat-two-two">$200</button>
+                <button class="clue-button" id="cat-three-two">$200</button>
+                <button class="clue-button" id="cat-four-two">$200</button>
+                <button class="clue-button" id="cat-five-two">$200</button>
+                <button class="clue-button" id="cat-six-two">$200</button>
+            </div>
+            <div id="$300-clues-container" class="clues-container">
+                <button class="clue-button" id="cat-one-three">$300</button>
+                <button class="clue-button" id="cat-two-three">$300</button>
+                <button class="clue-button" id="cat-three-three">$300</button>
+                <button class="clue-button" id="cat-four-three">$300</button>
+                <button class="clue-button" id="cat-five-three">$300</button>
+                <button class="clue-button" id="cat-six-three">$300</button>
+            </div>
+            <div id="$400-clues-container" class="clues-container">
+                <button class="clue-button" id="cat-one-four">$400</button>
+                <button class="clue-button" id="cat-two-four">$400</button>
+                <button class="clue-button" id="cat-three-four">$400</button>
+                <button class="clue-button" id="cat-four-four">$400</button>
+                <button class="clue-button" id="cat-five-four">$400</button>
+                <button class="clue-button" id="cat-six-four">$400</button>
+            </div>
+            <div id="$500-clues-container" class="clues-container">
+                <button class="clue-button" id="cat-one-five">$500</button>
+                <button class="clue-button" id="cat-two-five">$500</button>
+                <button class="clue-button" id="cat-three-five">$500</button>
+                <button class="clue-button" id="cat-four-five">$500</button>
+                <button class="clue-button" id="cat-five-five">$500</button>
+                <button class="clue-button" id="cat-six-five">$500</button>
+            </div>
+            <div id="clue-popup" class="hide">
+                <div id="error"></div>
+                <form id="answer-form" class="form">
+                    <br>
+                    <h2 id='daily-double' class="hide">Daily Double!</h2>
+                    <br>
+                    <label id="clue-label" for="answer">The clue goes here: </label>
+                    <br>
+                    <input type='text' placeholder="Wager"name='wager' id='wager' style="width: 400px; font-size: 20px; margin-left: 200px;" class="hide">
+                    <input type="text" placeholder="Answer"name="answer" id="answer"style="width: 400px; font-size: 20px; margin-left: 200px;" required>
+                    <button type="submit" id='submit-button'>Submit</button>
+                    <br>
+                    <br>
+                </form>
+            </div>
+            <div id="answer-feedback" class="hide">
+
+            </div>
+        </div>
+        
+    </main>
+    <footer>
+        <br>
+        <br>
+        <button id='start-button'>Start</button>
+        <button id='reset-button' class="hide">Reset</button>
+        <h2>Pick Your Clue!</h2>
+        <p>Player 1 goes first, then Player 2</p>
+        <p>Remember to answer in the form of a question!</p>
+    </footer>
+</body>
+</html>

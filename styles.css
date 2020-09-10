@@ -132,12 +132,12 @@ main {
 }
 
 #start-button, #submit-button, #reset-button {
-    height: 35px; 
+    height: 35px;
     width: 100px;
     border-radius: 10px;
 }
 
-.clue-button:hover {
+.clue-button:hover, .button:hover {
     cursor: pointer;
 }
 .hide {

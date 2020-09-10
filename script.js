@@ -1,4 +1,4 @@
-
+// Cache the DOM
 const catOneTitle_button = document.getElementById('cat-one-title');
 const catTwoTitle_button = document.getElementById('cat-two-title');
 const catThreeTitle_button = document.getElementById('cat-three-title');
@@ -50,10 +50,12 @@ const wager_input = document.getElementById('wager');
 const error_element = document.getElementById('error');
 const dailyDouble_header = document.getElementById('daily-double');
 
+// Set default scores
 let playerOneScore = 0;
 let playerTwoScore = 0;
 let counter = 0;
 
+// Clues Database
 const clues = {
     'Planets': {
         $100: {
@@ -276,7 +278,7 @@ const clues = {
         }
     }
 }
-
+// Clue Id's
 const clueIds = [
     'cat-one-one','cat-one-two','cat-one-three','cat-one-four','cat-one-five',
     'cat-two-one','cat-two-two','cat-two-three','cat-two-four','cat-two-five',
@@ -284,7 +286,7 @@ const clueIds = [
     'cat-four-one','cat-four-two','cat-four-three','cat-four-four','cat-four-five',
     'cat-five-one','cat-five-two','cat-five-three','cat-five-four','cat-five-five'
 ];
-
+// Responses to correct answers
 correctResponses = [
     'Correct! The Force is strong with this one!',
     'Great shot, kid! That was one in a million.',
@@ -292,6 +294,7 @@ correctResponses = [
     "That's right! Not bad for an organic meat-bag.",
     "Right. You're quite clever...for a human being."
 ];
+// Responses to statement answers
 questionResponses = [
     'Forgot to answer in the form of a question, did you?',
     'Lord Vader finds your lack of answering in the form of a question...disturbing.',
@@ -299,6 +302,7 @@ questionResponses = [
     "Next time answer in the form of a question, young padawan.",
     "Query: why did you not answer in the form of a question?"
 ];
+// Responses to incorrect answers
 incorrectResponses = [
     'Try Again. You stuck-up, half-witted, scruffy-looking, nerfherder!',
     "Incorrect! I have a bad feeling about this game.",
@@ -306,12 +310,13 @@ incorrectResponses = [
     "I don't know where you get your delusions, laser-brain.",
     "Much to learn, you still have."
 ];
-
+// Event handler for start and reset buttons
 start_button.addEventListener('click', game);
 reset_button.addEventListener('click', function() {
     window.location.reload();
 })
 
+// Function for the Jeopardy! game
 function game() {
     counter = 0;
     start_button.classList.add('hide');
@@ -319,7 +324,7 @@ function game() {
     localStorage.setItem('turn', 'player1');
     playerOne_div.classList.add('thick-border');
     fillTitles();
-    
+    // Sequentially fills the title categories
     function fillTitles() {
         setTimeout(() => catOneTitle_button.innerText = getRandomCategory(), 1000);
         setTimeout(() => catTwoTitle_button.innerText = getRandomCategory(), 2000);
@@ -328,7 +333,7 @@ function game() {
         setTimeout(() => catFiveTitle_button.innerText = getRandomCategory(), 5000);
         setTimeout(() => catSixTitle_button.innerText = getRandomCategory(), 6000);
     }
-
+    // Randomly assign a daily double
     function setDailyDouble() {
         let randomIndex = Math.floor(Math.random() * clueIds.length);
         let randomClue = clueIds[randomIndex];
@@ -356,7 +361,7 @@ function game() {
     'cat-one-five' == dailyDouble
     ? catOneFive_button.addEventListener('click', loadCatOneDD)
     : catOneFive_button.addEventListener('click', loadCatOneQuestion);
-    
+
     'cat-two-one' == dailyDouble
     ? catTwoOne_button.addEventListener('click', loadCatTwoDD)
     : catTwoOne_button.addEventListener('click', loadCatTwoQuestion);
@@ -465,7 +470,7 @@ function game() {
         resetWager();
         switchTurns();
     })
-    
+
     function loadCatOneQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -473,7 +478,7 @@ function game() {
         this.innerText = " ";
         this.removeEventListener('click', loadCatOneQuestion);
     }
-    
+
     function loadCatTwoQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -481,7 +486,7 @@ function game() {
         this.innerText = " ";
         this.removeEventListener('click', loadCatTwoQuestion);
     }
-    
+
     function loadCatThreeQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -489,7 +494,7 @@ function game() {
         this.innerText = " ";
         this.removeEventListener('click', loadCatThreeQuestion);
     }
-    
+
     function loadCatFourQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -497,7 +502,7 @@ function game() {
         this.innerText = " ";
         this.removeEventListener('click', loadCatFourQuestion);
     }
-    
+
     function loadCatFiveQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -505,7 +510,7 @@ function game() {
         this.innerText = " ";
         this.removeEventListener('click', loadCatFiveQuestion);
     }
-    
+
     function loadCatSixQuestion() {
         popupClue();
         storeDollar.call(this);
@@ -567,13 +572,15 @@ function game() {
         dailyDouble_header.classList.remove('hide');
         clue_label.innerText = Object.keys(clues[category][localStorage.getItem('dollar')]);
         localStorage.setItem('clue', clue_label.innerText);
+        document.getElementById('wager').focus();
     }
-    
+
     function loadQuestion(category) {
         clue_label.innerText = Object.keys(clues[category][localStorage.getItem('dollar')]);
+        document.getElementById('answer').focus();
         localStorage.setItem('clue', clue_label.innerText);
     }
-    
+
     function popupClue() {
         cluePopUp_div.classList.remove('hide');
     }
@@ -591,29 +598,29 @@ function game() {
             } else if (Number(wager) > 1000 && playerOneScore <= 1000) {
                 wager = 1000;
             }
-        } 
+        }
         else if (playerTurn == 'player2') {
             if (Number(wager) > playerTwoScore && playerTwoScore > 1000) {
                 wager = playerTwoScore;
             } else if (Number(wager) > 1000 && playerTwoScore <= 1000) {
                 wager = 1000;
             }
-        } 
+        }
         if (wager) {
             let stringWager = wager.toString();
             let filteredWager = stringWager.match(/[0-9]+/g)
             localStorage.setItem('dollar', "$"+filteredWager);
         }
     }
-    
+
     function storeAnswer() {
         let value = document.getElementById('answer').value;
         localStorage.setItem('answer', value);
     }
-    
+
     function checkAnswer() {
         let dollarValue = Number(localStorage.getItem('dollar').slice(1));
-        let playerTurn = localStorage.getItem('turn'); 
+        let playerTurn = localStorage.getItem('turn');
         let answer = localStorage.getItem('answer');
         let clue = localStorage.getItem('clue');
         let correctAnswer = findQuestion(clues, clue);
@@ -654,9 +661,9 @@ function game() {
         let randomIndex = Math.floor(Math.random() * responseArray.length);
         return responseArray[randomIndex];
     }
-    
+
     let categories = Object.keys(clues);
-    
+
     function getRandomCategory() {
         let randomIndex = Math.floor(Math.random() * categories.length);
         let selection = categories[randomIndex];
@@ -688,7 +695,7 @@ function game() {
         console.log(counter);
         winner();
     }
-    
+
     function findQuestion(obj, question) {
         for (let prop in obj) {
             for (let val in obj[prop]) {
